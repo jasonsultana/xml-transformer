@@ -12,6 +12,16 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <TextBlock Text="{Binding Greeting}" HorizontalAlignment="Center" VerticalAlignment="Center"/>
-
+    <DockPanel>
+        <!-- Controls -->
+        <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
+            <Label>Source File</Label>
+            <TextBox Text="{Binding SourceFileUrl}" IsReadOnly="True" />
+            <Button Content="Browse" Click="BrowseSourceFile_Clicked" />
+            
+            <Label>Transformation File</Label>
+        </StackPanel>
+        
+        <!-- TODO: Webview to render the XML -->
+    </DockPanel>
 </Window>

@@ -1,5 +1,7 @@
+using System.Threading.Tasks;
 using Avalonia;
 using Avalonia.Controls;
+using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
 
 namespace XMLTransformer.Views
@@ -17,6 +19,15 @@ namespace XMLTransformer.Views
         private void InitializeComponent()
         {
             AvaloniaXamlLoader.Load(this);
+        }
+
+
+        private async void BrowseSourceFile_Clicked(object? sender, RoutedEventArgs e)
+        {
+            OpenFileDialog dialog = new OpenFileDialog();
+            dialog.Filters.Add(new FileDialogFilter() { Name = "XML Config file", Extensions =  { "xml", "config" } });
+
+            string[] result = await dialog.ShowAsync(this);
         }
     }
 }
