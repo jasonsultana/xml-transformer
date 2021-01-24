@@ -1,3 +1,4 @@
+using System;
 using System.Diagnostics;
 using System.IO;
 using System.Linq;
@@ -25,6 +26,8 @@ namespace XMLTransformer.Views
         {
             AvaloniaXamlLoader.Load(this);
         }
+
+        private string _sourceBackup = string.Empty;
         
         private MainWindowViewModel ViewModel => this.DataContext as MainWindowViewModel;
             
@@ -75,14 +78,20 @@ namespace XMLTransformer.Views
             Process.Start (psi);
         }
 
-        private void Transform_Clicked(object? sender, RoutedEventArgs e)
+        private async void Transform_Clicked(object? sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            var sourceXml = await File.ReadAllTextAsync(ViewModel.SourceFileUrl);
+            var transformXml = await File.ReadAllTextAsync(ViewModel.TransformFileUrl);
+            var transformedXml = new XmlTransformService().Transform(sourceXml, transformXml);
+            
+            _sourceBackup = new string(sourceXml);
+
+            await File.WriteAllTextAsync(ViewModel.SourceFileUrl, transformedXml);
         }
 
-        private void Revert_Clicked(object? sender, RoutedEventArgs e)
+        private async void Revert_Clicked(object? sender, RoutedEventArgs e)
         {
-            throw new System.NotImplementedException();
+            await File.WriteAllTextAsync(ViewModel.SourceFileUrl, _sourceBackup);
         }
     }
 }

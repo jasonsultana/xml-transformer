@@ -18,15 +18,15 @@
         <TextBox IsEnabled="False" Text="{Binding SourceFileUrl}" IsReadOnly="True" />
         <Button Content="Browse" Click="BrowseSourceFile_Clicked" />
             
-        <Label>Transformation File</Label>
+        <Label FontStyle="Oblique">Transformation File</Label>
         <TextBox IsEnabled="False" Text="{Binding TransformFileUrl}" IsReadOnly="True" />
         <Button Content="Browse" Click="BrowseTransformFile_Clicked" />       
             
         <Button Content="Preview" IsEnabled="{Binding IsPreviewEnabled}" Click="Preview_Clicked" />
             
         <DockPanel>
-            <Button DockPanel.Dock="Left" Content="Transform" Click="Transform_Clicked" />    
-            <Button DockPanel.Dock="Right" Content="Revert" Click="Revert_Clicked" />
+            <Button IsEnabled="{Binding IsPreviewEnabled}" DockPanel.Dock="Left" Content="Transform" Click="Transform_Clicked" />    
+            <Button IsEnabled="{Binding IsPreviewEnabled}" DockPanel.Dock="Right" Content="Revert" Click="Revert_Clicked" />
         </DockPanel>
     </StackPanel>
 </Window>
