@@ -3,6 +3,7 @@
         xmlns:vm="using:XMLTransformer.ViewModels"
         xmlns:d="http://schemas.microsoft.com/expression/blend/2008"
         xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006"
+        xmlns:avalonia="clr-namespace:CefGlue.Avalonia;assembly=CefGlue.Avalonia"
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="XMLTransformer.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
@@ -12,16 +13,20 @@
         <vm:MainWindowViewModel/>
     </Design.DataContext>
 
-    <DockPanel>
-        <!-- Controls -->
-        <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
-            <Label>Source File</Label>
-            <TextBox Text="{Binding SourceFileUrl}" IsReadOnly="True" />
-            <Button Content="Browse" Click="BrowseSourceFile_Clicked" />
+    <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
+        <Label FontStyle="Oblique">Source File</Label>
+        <TextBox IsEnabled="False" Text="{Binding SourceFileUrl}" IsReadOnly="True" />
+        <Button Content="Browse" Click="BrowseSourceFile_Clicked" />
             
-            <Label>Transformation File</Label>
-        </StackPanel>
-        
-        <!-- TODO: Webview to render the XML -->
-    </DockPanel>
+        <Label>Transformation File</Label>
+        <TextBox IsEnabled="False" Text="{Binding TransformFileUrl}" IsReadOnly="True" />
+        <Button Content="Browse" Click="BrowseTransformFile_Clicked" />       
+            
+        <Button Content="Preview" IsEnabled="{Binding IsPreviewEnabled}" Click="Preview_Clicked" />
+            
+        <DockPanel>
+            <Button DockPanel.Dock="Left" Content="Transform" Click="Transform_Clicked" />    
+            <Button DockPanel.Dock="Right" Content="Revert" Click="Revert_Clicked" />
+        </DockPanel>
+    </StackPanel>
 </Window>

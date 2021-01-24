@@ -5,13 +5,19 @@
         <Nullable>enable</Nullable>
     </PropertyGroup>
     <ItemGroup>
-        <Folder Include="Models\"/>
-        <AvaloniaResource Include="Assets\**"/>
+        <Folder Include="Models\" />
+        <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
     <ItemGroup>
-        <PackageReference Include="Avalonia" Version="0.10.0"/>
-        <PackageReference Include="Avalonia.Desktop" Version="0.10.0"/>
-        <PackageReference Include="Avalonia.Diagnostics" Version="0.10.0"/>
-        <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0"/>
+        <PackageReference Include="Avalonia" Version="0.10.0" />
+        <PackageReference Include="Avalonia.Desktop" Version="0.10.0" />
+        <PackageReference Include="Avalonia.Diagnostics" Version="0.10.0" />
+        <PackageReference Include="Avalonia.HtmlRenderer" Version="0.6.1" />
+        <PackageReference Include="Avalonia.ReactiveUI" Version="0.10.0" />
+        <PackageReference Include="Microsoft.Web.Xdt" Version="3.1.0" />
+        <PackageReference Include="VitalElement.CefGlue.Core" Version="0.9.0-build32-alpha" />
+        <PackageReference Include="VitalElement.CefGlue.Core.Avalonia" Version="0.9.0-build32-alpha" />
+        <PackageReference Include="VitalElement.CefGlue.Core.OSX" Version="0.9.0-build32-alpha" />
+        <PackageReference Include="VitalElement.CefGlue.Core.Win-x64" Version="0.9.0-build32-alpha" />
     </ItemGroup>
 </Project>
