@@ -10,6 +10,8 @@ namespace XMLTransformer.ViewModels
     public class MainWindowViewModel : ViewModelBase
     {
         private string _sourceFileUrl = "";
+        private string _transformFileUrl = "";
+        private string _transformFileUrl2 = "";
         
         [NotNull]
         public string SourceFileUrl
@@ -17,14 +19,19 @@ namespace XMLTransformer.ViewModels
             get => _sourceFileUrl;
             set => this.RaiseAndSetIfChanged(ref _sourceFileUrl, value);
         }
-
-        private string _transformFileUrl = "";
-
+        
         [NotNull]
         public string TransformFileUrl
         {
             get => _transformFileUrl;
             set => _transformFileUrl = this.RaiseAndSetIfChanged(ref _transformFileUrl, value);
+        }
+
+        [NotNull]
+        public string TransformFileUrl2
+        {
+            get => _transformFileUrl2;
+            set => _transformFileUrl2 = this.RaiseAndSetIfChanged(ref _transformFileUrl2, value);
         }
 
         public bool IsPreviewEnabled => !string.IsNullOrWhiteSpace(SourceFileUrl)
@@ -41,6 +48,5 @@ namespace XMLTransformer.ViewModels
                 }
             };
         }
-
     }
 }

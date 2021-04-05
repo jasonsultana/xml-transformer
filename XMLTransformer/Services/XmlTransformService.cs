@@ -43,5 +43,32 @@ namespace XMLTransformer.Services
                 }
             }
         }
+
+        public string Transform(string sourceXml, string transformXml, string transformXml2)
+        {
+            var res = Transform(sourceXml, transformXml);
+
+            if (!string.IsNullOrWhiteSpace(transformXml2))
+            {
+                // After the first Transform, a BOM (Byte Order Mark) gets added to the start of the text.
+                // We need to remove the BOM before we can transform a second time.
+                res = RemoveBOM(res);
+                res = Transform(res, transformXml2);
+            }
+            
+            return res;
+        }
+
+        private string RemoveBOM(string xml)
+        {
+            // https://stackoverflow.com/questions/17795167/xml-loaddata-data-at-the-root-level-is-invalid-line-1-position-1
+            string byteOrderMarkUtf8 = Encoding.UTF8.GetString(Encoding.UTF8.GetPreamble());
+            if (xml.StartsWith(byteOrderMarkUtf8))
+            {
+                xml = xml.Remove(0, byteOrderMarkUtf8.Length);
+            }
+
+            return xml;
+        }
     }
 }

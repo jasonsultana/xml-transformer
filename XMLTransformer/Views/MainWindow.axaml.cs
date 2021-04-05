@@ -33,39 +33,52 @@ namespace XMLTransformer.Views
             
         private async void BrowseSourceFile_Clicked(object? sender, RoutedEventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog()
-            {
-                AllowMultiple = false
-            };
-            dialog.Filters.Add(new FileDialogFilter() { Name = "XML Config file", Extensions =  { "xml", "config" } });
-
-            string[] result = await dialog.ShowAsync(this);
-            if (result.Any())
-            {
-                ((MainWindowViewModel) this.DataContext).SourceFileUrl = result.First();
-            }
+            var res = await OpenDialogAsync("XML Source File");
+            if (res != null)
+                ((MainWindowViewModel) this.DataContext).SourceFileUrl = res;
         }
 
         private async void BrowseTransformFile_Clicked(object? sender, RoutedEventArgs e)
         {
-            OpenFileDialog dialog = new OpenFileDialog()
+            var res = await OpenDialogAsync("XML Transform File");
+            if (res != null)
+                ((MainWindowViewModel) this.DataContext).TransformFileUrl = res;
+        }
+        
+        private async void BrowseTransformFile2_Clicked(object? sender, RoutedEventArgs e)
+        {
+            var res = await OpenDialogAsync("XML Transform File");
+            if (res != null)
+                ((MainWindowViewModel) this.DataContext).TransformFileUrl2 = res;
+        }
+        
+        private void RemoveTransformFile2_Clicked(object? sender, RoutedEventArgs e)
+        {
+            ((MainWindowViewModel) this.DataContext).TransformFileUrl2 = string.Empty;
+            
+        }
+
+        private async Task<string?> OpenDialogAsync(string name)
+        {
+            var dialog = new OpenFileDialog()
             {
                 AllowMultiple = false
             };
-            dialog.Filters.Add(new FileDialogFilter() { Name = "XML Transform file", Extensions =  { "xml", "config" } });
+            dialog.Filters.Add(new FileDialogFilter() { Name = name, Extensions =  { "xml", "config" } });
 
             string[] result = await dialog.ShowAsync(this);
-            if (result.Any())
-            {
-                ((MainWindowViewModel) this.DataContext).TransformFileUrl = result.First();
-            }
+            return result.FirstOrDefault();
         }
 
         private async void Preview_Clicked(object? sender, RoutedEventArgs e)
         {
             var sourceXml = await File.ReadAllTextAsync(ViewModel.SourceFileUrl);
             var transformXml = await File.ReadAllTextAsync(ViewModel.TransformFileUrl);
-            var transformedXml = new XmlTransformService().Transform(sourceXml, transformXml);
+            var transformXml2 = string.IsNullOrEmpty(ViewModel.TransformFileUrl2)
+                ? string.Empty
+                : await File.ReadAllTextAsync(ViewModel.TransformFileUrl2);
+
+            var transformedXml = new XmlTransformService().Transform(sourceXml, transformXml, transformXml2);
             var tempFileUrl = Path.GetTempPath() + Path.DirectorySeparatorChar + "temp.xml";
 
             await File.WriteAllTextAsync(tempFileUrl, transformedXml);
@@ -82,7 +95,11 @@ namespace XMLTransformer.Views
         {
             var sourceXml = await File.ReadAllTextAsync(ViewModel.SourceFileUrl);
             var transformXml = await File.ReadAllTextAsync(ViewModel.TransformFileUrl);
-            var transformedXml = new XmlTransformService().Transform(sourceXml, transformXml);
+            var transformXml2 = string.IsNullOrEmpty(ViewModel.TransformFileUrl2)
+                ? string.Empty
+                : await File.ReadAllTextAsync(ViewModel.TransformFileUrl2);
+
+            var transformedXml = new XmlTransformService().Transform(sourceXml, transformXml, transformXml2);
             
             _sourceBackup = new string(sourceXml);
 

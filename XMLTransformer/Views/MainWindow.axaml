@@ -14,17 +14,27 @@
     </Design.DataContext>
 
     <StackPanel DockPanel.Dock="Left" Orientation="Vertical">
+        <!-- Source file -->
         <Label FontStyle="Oblique">Source File</Label>
         <TextBox IsEnabled="False" Text="{Binding SourceFileUrl}" IsReadOnly="True" />
         <Button Content="Browse" Click="BrowseSourceFile_Clicked" />
             
+        <!-- Transform file 1 -->
         <Label FontStyle="Oblique">Transformation File</Label>
         <TextBox IsEnabled="False" Text="{Binding TransformFileUrl}" IsReadOnly="True" />
         <Button Content="Browse" Click="BrowseTransformFile_Clicked" />       
             
-        <Button Content="Preview" IsEnabled="{Binding IsPreviewEnabled}" Click="Preview_Clicked" />
-            
+        <!-- Transform file 2 -->
+        <Label FontStyle="Oblique">Transformation File 2 (Optional)</Label>
+        <TextBox IsEnabled="False" Text="{Binding TransformFileUrl2}" IsReadOnly="True" />
         <DockPanel>
+            <Button Content="Browse" Click="BrowseTransformFile2_Clicked" DockPanel.Dock="Left" />
+            <Button Content="Clear" Click="RemoveTransformFile2_Clicked" DockPanel.Dock="Right" />  
+        </DockPanel>
+        
+        <!-- Buttons -->
+        <DockPanel Margin="0,10,0,0">
+            <Button IsEnabled="{Binding IsPreviewEnabled}" DockPanel.Dock="Left" Content="Preview" Click="Preview_Clicked" />
             <Button IsEnabled="{Binding IsPreviewEnabled}" DockPanel.Dock="Left" Content="Transform" Click="Transform_Clicked" />    
             <Button IsEnabled="{Binding IsPreviewEnabled}" DockPanel.Dock="Right" Content="Revert" Click="Revert_Clicked" />
         </DockPanel>

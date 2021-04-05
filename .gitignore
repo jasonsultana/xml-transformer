@@ -3,3 +3,5 @@ obj/
 /packages/
 riderModule.iml
 /_ReSharper.Caches/
+/XMLTransformer.sln.DotSettings.user
+/.idea/
