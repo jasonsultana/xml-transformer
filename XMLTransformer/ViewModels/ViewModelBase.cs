@@ -1,9 +1,6 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using ReactiveUI;
+﻿using ReactiveUI;
 
-namespace XMLTransformer.ViewModels
+namespace XMLTransformer.AvaloniaUI.ViewModels
 {
     public class ViewModelBase : ReactiveObject
     {

@@ -1,9 +1,10 @@
 <Application xmlns="https://github.com/avaloniaui"
              xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
              xmlns:local="using:XMLTransformer"
-             x:Class="XMLTransformer.App">
+             xmlns:avaloniaUi="clr-namespace:XMLTransformer.AvaloniaUI"
+             x:Class="XMLTransformer.AvaloniaUI.App">
     <Application.DataTemplates>
-        <local:ViewLocator/>
+        <avaloniaUi:ViewLocator/>
     </Application.DataTemplates>
 
     <Application.Styles>

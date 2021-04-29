@@ -3,9 +3,10 @@
         <OutputType>WinExe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
         <Nullable>enable</Nullable>
+        <AssemblyName>XMLTransformer.AvaloniaUI</AssemblyName>
+        <RootNamespace>XMLTransformer.AvaloniaUI</RootNamespace>
     </PropertyGroup>
     <ItemGroup>
-        <Folder Include="Models\" />
         <AvaloniaResource Include="Assets\**" />
     </ItemGroup>
     <ItemGroup>
@@ -19,5 +20,8 @@
         <PackageReference Include="VitalElement.CefGlue.Core.Avalonia" Version="0.9.0-build32-alpha" />
         <PackageReference Include="VitalElement.CefGlue.Core.OSX" Version="0.9.0-build32-alpha" />
         <PackageReference Include="VitalElement.CefGlue.Core.Win-x64" Version="0.9.0-build32-alpha" />
+    </ItemGroup>
+    <ItemGroup>
+      <ProjectReference Include="..\XMLTransformer.Shared\XMLTransformer.Shared.csproj" />
     </ItemGroup>
 </Project>

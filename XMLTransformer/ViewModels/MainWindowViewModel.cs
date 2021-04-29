@@ -1,11 +1,7 @@
-﻿using System;
-using System.Collections.Generic;
-using System.Text;
-using JetBrains.Annotations;
-using Microsoft.CodeAnalysis.CSharp.Syntax;
+﻿using JetBrains.Annotations;
 using ReactiveUI;
 
-namespace XMLTransformer.ViewModels
+namespace XMLTransformer.AvaloniaUI.ViewModels
 {
     public class MainWindowViewModel : ViewModelBase
     {

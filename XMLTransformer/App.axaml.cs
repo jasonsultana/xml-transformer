@@ -1,10 +1,10 @@
 using Avalonia;
 using Avalonia.Controls.ApplicationLifetimes;
 using Avalonia.Markup.Xaml;
-using XMLTransformer.ViewModels;
+using XMLTransformer.AvaloniaUI.ViewModels;
 using XMLTransformer.Views;
 
-namespace XMLTransformer
+namespace XMLTransformer.AvaloniaUI
 {
     public class App : Application
     {

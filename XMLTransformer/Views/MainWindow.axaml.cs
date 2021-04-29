@@ -7,8 +7,8 @@ using Avalonia;
 using Avalonia.Controls;
 using Avalonia.Interactivity;
 using Avalonia.Markup.Xaml;
-using XMLTransformer.Services;
-using XMLTransformer.ViewModels;
+using XMLTransformer.AvaloniaUI.ViewModels;
+using XMLTransformer.Shared;
 
 namespace XMLTransformer.Views
 {
@@ -72,15 +72,20 @@ namespace XMLTransformer.Views
 
         private async void Preview_Clicked(object? sender, RoutedEventArgs e)
         {
+            // Load resources
             var sourceXml = await File.ReadAllTextAsync(ViewModel.SourceFileUrl);
             var transformXml = await File.ReadAllTextAsync(ViewModel.TransformFileUrl);
             var transformXml2 = string.IsNullOrEmpty(ViewModel.TransformFileUrl2)
                 ? string.Empty
                 : await File.ReadAllTextAsync(ViewModel.TransformFileUrl2);
 
-            var transformedXml = new XmlTransformService().Transform(sourceXml, transformXml, transformXml2);
+            // Transform the XML
+            var transformedXml = new XmlTransformService().Transform(sourceXml, transformXml);
+            if (!string.IsNullOrWhiteSpace(transformXml2))
+                transformedXml = new XmlTransformService().Transform(transformedXml, transformXml2);
+            
+            // Write to file
             var tempFileUrl = Path.GetTempPath() + Path.DirectorySeparatorChar + "temp.xml";
-
             await File.WriteAllTextAsync(tempFileUrl, transformedXml);
             
             ProcessStartInfo psi = new ProcessStartInfo
@@ -93,16 +98,21 @@ namespace XMLTransformer.Views
 
         private async void Transform_Clicked(object? sender, RoutedEventArgs e)
         {
+            // Load resources
             var sourceXml = await File.ReadAllTextAsync(ViewModel.SourceFileUrl);
             var transformXml = await File.ReadAllTextAsync(ViewModel.TransformFileUrl);
             var transformXml2 = string.IsNullOrEmpty(ViewModel.TransformFileUrl2)
                 ? string.Empty
                 : await File.ReadAllTextAsync(ViewModel.TransformFileUrl2);
 
-            var transformedXml = new XmlTransformService().Transform(sourceXml, transformXml, transformXml2);
+            // transform the XML
+            var transformedXml = new XmlTransformService().Transform(sourceXml, transformXml);
+            if (!string.IsNullOrWhiteSpace(transformXml2))
+                transformedXml = new XmlTransformService().Transform(transformedXml, transformXml2);
             
             _sourceBackup = new string(sourceXml);
 
+            // Write to file
             await File.WriteAllTextAsync(ViewModel.SourceFileUrl, transformedXml);
         }
 

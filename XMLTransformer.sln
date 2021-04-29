@@ -2,6 +2,8 @@
 Microsoft Visual Studio Solution File, Format Version 12.00
 Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLTransformer", "XMLTransformer\XMLTransformer.csproj", "{CEE4B49C-3C4E-41F8-945D-CAE4BF21CFE5}"
 EndProject
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "XMLTransformer.Shared", "XMLTransformer.Shared\XMLTransformer.Shared.csproj", "{D154342E-AD0D-49E5-BFA7-64454600D560}"
+EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution
 		Debug|Any CPU = Debug|Any CPU
@@ -12,5 +14,9 @@ Global
 		{CEE4B49C-3C4E-41F8-945D-CAE4BF21CFE5}.Debug|Any CPU.Build.0 = Debug|Any CPU
 		{CEE4B49C-3C4E-41F8-945D-CAE4BF21CFE5}.Release|Any CPU.ActiveCfg = Release|Any CPU
 		{CEE4B49C-3C4E-41F8-945D-CAE4BF21CFE5}.Release|Any CPU.Build.0 = Release|Any CPU
+		{D154342E-AD0D-49E5-BFA7-64454600D560}.Debug|Any CPU.ActiveCfg = Debug|Any CPU
+		{D154342E-AD0D-49E5-BFA7-64454600D560}.Debug|Any CPU.Build.0 = Debug|Any CPU
+		{D154342E-AD0D-49E5-BFA7-64454600D560}.Release|Any CPU.ActiveCfg = Release|Any CPU
+		{D154342E-AD0D-49E5-BFA7-64454600D560}.Release|Any CPU.Build.0 = Release|Any CPU
 	EndGlobalSection
 EndGlobal

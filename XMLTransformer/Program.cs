@@ -1,9 +1,7 @@
-﻿using System;
-using Avalonia;
-using Avalonia.Controls.ApplicationLifetimes;
+﻿using Avalonia;
 using Avalonia.ReactiveUI;
 
-namespace XMLTransformer
+namespace XMLTransformer.AvaloniaUI
 {
     class Program
     {
