@@ -7,7 +7,7 @@
         mc:Ignorable="d" d:DesignWidth="800" d:DesignHeight="450"
         x:Class="XMLTransformer.Views.MainWindow"
         Icon="/Assets/avalonia-logo.ico"
-        Title="XMLTransformer">
+        Title="XMLTransformer.AvaloniaUI">
 
     <Design.DataContext>
         <viewModels:MainWindowViewModel/>
