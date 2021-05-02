@@ -1,24 +1,42 @@
 # xml-transformer
-A cross platform desktop UI that can apply transform files to XML configuration
+A cross platform program that can apply transform files to XML configuration without doing a build or publish.
 
 G'day guys!
 
-As the name of the repo suggests, this is an XML Transformer tool. It's a desktop app written in C# / Avalonia UI in .NET 5, which makes it cross platform. 
-You will need to have the .NET 5 SDK and a compiler available though. This means typically either VS 2019 or Rider.
+As the name of the repo suggests, this is an XML Transformer tool. There are 2 runnable projects.
 
-## Usage
+## GUI
+
+The GUI version of this project is probably ideal for those who aren't comfortable with a terminal, or are working primarily within one directory. The GUI also supports a preview option, and reverting, which is not supported in the CLI.
+
+### Usage
 
 1. Select a source file (your original XML)
 2. Select up to 2 XML transform files.
 3. Preview or apply the transform files.
 
-### Preview
+#### Preview
 Preview will save the resulting _transformed_ XML to a temporary xml file on your local filesystem and open it in your system default XML viewer.
 
-### Transform
+#### Transform
 This will _apply_ the transform XML files and overwrite the original source file. The changes can be undone by clicking Revert.
 
-### Why 2 transform files?
+
+
+## CLI
+
+The CLI option was born out of a frustration I had, navigating between different folders using the GUI.
+
+### Usage
+
+The command line transform program requires at least two arguments; an input file (specified with the `i` parameter name) and at least one transform file (denoted by `t`). An unlimited number of transform files can be run sequentially. Just include a space between transform file paths, or a comma.
+```
+ ./XMLTransformer.Console -i "../../../../Samples/sample.config" -t "../../../../Samples/sample.transform.config" "../../../../Samples/sample.transform-2.config"
+```
+Unlike the GUI, there is no preview or revert option.
+
+## Misc
+### Why multiple transform files?
 
 If you're working with .NET Framework (which I assume you are, if you're reading this), you'll likely have a source config file, and various XML transform files
 per region, per environment. This tool was originally made to provide a convenient way to apply those transformations locally, instead of having to do a 
