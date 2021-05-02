@@ -13,7 +13,7 @@ namespace XMLTransformer.Shared
         {
             // Remove the BOM (Byte Order Mark) from the source XML if it's there.
             // This will most likely be the case when you try to call this multiple times.
-            sourceXml = RemoveBOM3(sourceXml);
+            sourceXml = TrimStart(sourceXml);
             
             using (var document = new XmlTransformableDocument())
             {
@@ -48,36 +48,7 @@ namespace XMLTransformer.Shared
             }
         }
 
-        private string RemoveBOM(string xml)
-        {
-            // https://stackoverflow.com/questions/17795167/xml-loaddata-data-at-the-root-level-is-invalid-line-1-position-1
-            var preamble = Encoding.UTF8.GetPreamble();
-            string byteOrderMarkUtf8 = Encoding.UTF8.GetString(preamble);
-            if (xml.StartsWith(byteOrderMarkUtf8))
-            {
-                xml = xml.Remove(0, byteOrderMarkUtf8.Length);
-            }
-
-            return xml;
-        }
-
-        private string RemoveBOM2(string xml)
-        {
-            // https://docs.microsoft.com/en-us/dotnet/csharp/programming-guide/types/how-to-convert-a-byte-array-to-an-int
-            var preamble = System.Text.Encoding.UTF8.GetPreamble();
-            if (BitConverter.IsLittleEndian)
-                Array.Reverse(preamble);
-            
-            var preambleChar = BitConverter.ToChar(preamble, 0);
-            if (preambleChar == xml[0])
-            {
-                return xml.Remove(0, 1);
-            }
-
-            return xml;
-        }
-
-        private string RemoveBOM3(string xml)
+        private string TrimStart(string xml)
         {
             int index = xml.IndexOf('<');
             if (index > 0)
