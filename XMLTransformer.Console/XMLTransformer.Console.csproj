@@ -4,6 +4,13 @@
         <OutputType>Exe</OutputType>
         <TargetFramework>net5.0</TargetFramework>
     </PropertyGroup>
+    
+    <PropertyGroup>
+        <!-- https://docs.microsoft.com/en-us/dotnet/core/tools/global-tools-how-to-create? -->
+        <PackAsTool>true</PackAsTool>
+        <ToolCommandName>xmlt</ToolCommandName>
+        <PackageOutputPath>./nupkg</PackageOutputPath>
+    </PropertyGroup>
 
     <ItemGroup>
       <ProjectReference Include="..\XMLTransformer.Shared\XMLTransformer.Shared.csproj" />
